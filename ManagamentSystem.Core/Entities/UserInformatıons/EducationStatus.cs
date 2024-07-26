@@ -6,8 +6,7 @@
         public string  GraduatedSchool { get; set; }
         public int GraduationScore { get; set; }
         public DateTime YearOfGraduation { get; set; }
-        public int UserId { get; set; }
-        public AppUser AppUser { get; set; }
+		public AppUser AppUser { get; set; }
         
     }
 }

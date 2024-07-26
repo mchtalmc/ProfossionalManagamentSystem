@@ -16,6 +16,7 @@ using MagamentSystem.Application.Repository.WaresRepository.MarketPlaces;
 using MagamentSystem.Application.Repository.WaresRepository.Producers;
 using MagamentSystem.Application.Repository.WaresRepository.Products;
 using MagamentSystem.Application.Services.Security;
+using ManagementSystem.Infrastructure.Managers.User;
 using ManagementSystem.Infrastructure.Repository;
 using ManagementSystem.Infrastructure.Repository.Buy.ContractInfos;
 using ManagementSystem.Infrastructure.Repository.Buy.Contractors;
@@ -53,7 +54,11 @@ namespace ManagementSystem.Infrastructure
 		public static void AddManagerService( IServiceCollection services)
 		{
 			#region User
-			services.AddTransient<IAppUserManager,IAppUserManager>();
+			services.AddTransient<IAppUserManager, AppUserManagerService>();
+			services.AddTransient<IEducationManager, EducationManager>();
+			services.AddTransient<IHealtManager, HealtManager>();
+			services.AddTransient<IMilitaryManager, MilitaryManager>();
+			services.AddTransient<IExperienceManger,ExperienceManager>();
 			#endregion
 
 			

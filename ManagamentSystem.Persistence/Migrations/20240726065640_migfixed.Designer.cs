@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ManagamentSystem.Persistance.Migrations
 {
     [DbContext(typeof(ManagamentContext))]
-    partial class ManagamentContextModelSnapshot : ModelSnapshot
+    [Migration("20240726065640_migfixed")]
+    partial class migfixed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -861,7 +864,7 @@ namespace ManagamentSystem.Persistance.Migrations
             modelBuilder.Entity("ManagamentSystem.Core.Entities.UserInformatıons.EducationStatus", b =>
                 {
                     b.HasOne("ManagamentSystem.Core.Entities.AppUser", "AppUser")
-                        .WithMany("EducationStatuses")
+                        .WithMany()
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -872,7 +875,7 @@ namespace ManagamentSystem.Persistance.Migrations
             modelBuilder.Entity("ManagamentSystem.Core.Entities.UserInformatıons.Experience", b =>
                 {
                     b.HasOne("ManagamentSystem.Core.Entities.AppUser", "AppUser")
-                        .WithMany("Experiences")
+                        .WithMany()
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -883,7 +886,7 @@ namespace ManagamentSystem.Persistance.Migrations
             modelBuilder.Entity("ManagamentSystem.Core.Entities.UserInformatıons.HealthStatus", b =>
                 {
                     b.HasOne("ManagamentSystem.Core.Entities.AppUser", "AppUser")
-                        .WithMany("HealthStatuses")
+                        .WithMany()
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -935,15 +938,6 @@ namespace ManagamentSystem.Persistance.Migrations
                     b.Navigation("Marketplace");
 
                     b.Navigation("Producer");
-                });
-
-            modelBuilder.Entity("ManagamentSystem.Core.Entities.AppUser", b =>
-                {
-                    b.Navigation("EducationStatuses");
-
-                    b.Navigation("Experiences");
-
-                    b.Navigation("HealthStatuses");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,7 +6,6 @@
         public bool Delay { get; set; }
         public DateTime DelayEndDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int UserId { get; set; }
         public AppUser AppUser { get; set; }
 
     }
