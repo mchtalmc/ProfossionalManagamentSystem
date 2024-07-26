@@ -44,7 +44,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 			throw new NotImplementedException();
 		}
 
-		public Task<BaseResponse<HealtResponse>> GetHealtStatusFilter(FilterHealtyRequest request)
+		public BaseResponse<HealtResponse> GetHealtStatusFilter(FilterHealtyRequest request)
 		{
 			throw new NotImplementedException();
 		}

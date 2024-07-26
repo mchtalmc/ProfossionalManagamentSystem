@@ -44,7 +44,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 			throw new NotImplementedException();
 		}
 
-		public Task<BaseResponse<ExperienceResponse>> GetExperienceFilter(FilterExperienceRequest request)
+		public BaseResponse<ExperienceResponse> GetExperienceFilter(FilterExperienceRequest request)
 		{
 			throw new NotImplementedException();
 		}

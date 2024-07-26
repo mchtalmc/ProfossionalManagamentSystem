@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ManagementSystem.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+	[ApiExplorerSettings(GroupName = "authService")]
 	[ApiController]
 	public class AuthController : ControllerBase
 	{

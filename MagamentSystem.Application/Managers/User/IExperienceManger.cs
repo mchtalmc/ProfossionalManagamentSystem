@@ -10,7 +10,7 @@ namespace MagamentSystem.Application.Managers.User
 		Task<BaseResponse<bool>> DeleteExperience(RemoveExperienceRequest request);
 		BaseResponse<List<ExperienceResponse>> GetAllExperience();
 		BaseResponse<List<ExperienceResponse>> GetAllExperienceFilter(FilterExperienceRequest request);
-		Task<BaseResponse<ExperienceResponse>> GetExperienceFilter(FilterExperienceRequest request);
+		BaseResponse<ExperienceResponse> GetExperienceFilter(FilterExperienceRequest request);
 		Task<BaseResponse<ExperienceResponse>> GetExperienceById(int id);
 	}
 }

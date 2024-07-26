@@ -1,10 +1,8 @@
 ﻿using MagamentSystem.Application;
 using ManagamentSystem.Persistance;
-using ManagementSystem.WebAPI.Infrastructure.Extensions.Security;
-using ManagementSystem.WebAPI.Infrasturcture.Extentions.Swagger;
-
-
 using ManagementSystem.Infrastructure;
+using ManagementSystem.WebAPI.Infrastructure.Extensions.Security;
+using ManagementSystem.WebAPI.Infrastructure.Extensions.Swagger;
 
 namespace ManagementSystem.WebAPI.Infrastructure
 {
@@ -15,9 +13,9 @@ namespace ManagementSystem.WebAPI.Infrastructure
 			builder.Services.AddInfrasturctureServices(builder.Configuration);
 			builder.Services.AddSwaggerServices();
 			builder.Services.ConfigureAuth(builder.Configuration);
-			builder.Services.AddPersistenceServices(builder.Configuration);
+			
 			builder.Services.AddApplicationRegistration(builder.Configuration);
-
+			
 			return builder;
 		}
 

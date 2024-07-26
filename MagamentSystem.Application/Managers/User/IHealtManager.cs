@@ -10,7 +10,7 @@ namespace MagamentSystem.Application.Managers.User
 		Task<BaseResponse<bool>> DeleteHealtStatus(RemoveHealtyRequest request);
 		BaseResponse<List<HealtResponse>> GetAllHealtStatus();
 		BaseResponse<List<HealtResponse>> GetAllHealtStatusFilter(FilterHealtyRequest request);
-		Task<BaseResponse<HealtResponse>> GetHealtStatusFilter(FilterHealtyRequest request);
+		BaseResponse<HealtResponse> GetHealtStatusFilter(FilterHealtyRequest request);
 		Task<BaseResponse<HealtResponse>> GetHealtStatusById(int id);
 	}
 }

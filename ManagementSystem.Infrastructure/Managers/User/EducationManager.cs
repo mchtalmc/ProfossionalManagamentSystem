@@ -52,7 +52,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 
 		public BaseResponse<List<EducationResponse>> GetAllEducation()
 		{
-			var getData= _educationReadRepository.GetAll().ToList();
+			var getData= _educationReadRepository.GetAll().Where(x=>x.RemovedDate.Equals(null)).ToList();
 			if(getData is null)
 			{
 				return new BaseResponse<List<EducationResponse>>(false, "Education List's NOT FOUND");
@@ -79,7 +79,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				int year = request.YearOfGraduation.Year;
 				query = query.Where(x => x.YearOfGraduation.Year == year); // Guvenmiyorum ama is gorur gibi
 			}
-			var response = query.Select(x => new EducationResponse
+			var response = query.Where(x=>x.RemovedDate == null).Select(x => new EducationResponse
 			{
 				Id=x.Id,
 				GraduatedSchool=x.GraduatedSchool,
@@ -129,7 +129,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				int year = request.YearOfGraduation.Year;
 				query = query.Where(x => x.YearOfGraduation.Year == year); // Guvenmiyorum ama is gorur gibi
 			}
-			var response = query.Select(x =>  new EducationResponse
+			var response = query.Where(x => x.RemovedDate == null).Select(x =>  new EducationResponse
 			{
 				Id = x.Id,
 				GraduatedSchool = x.GraduatedSchool,

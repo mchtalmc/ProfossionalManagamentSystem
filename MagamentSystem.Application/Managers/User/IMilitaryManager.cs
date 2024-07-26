@@ -10,7 +10,7 @@ namespace MagamentSystem.Application.Managers.User
 		Task<BaseResponse<bool>> DeleteMilitaryStatus(RemoveMilitaryRequest request);
 		BaseResponse<List<MilitaryResponse>> GetAllMilitaryStatus();
 		BaseResponse<List<MilitaryResponse>> GetAllFilterMilitaryStatus(FilterMilitaryRequest request);
-		Task<BaseResponse<MilitaryResponse>> GetMilitaryStatutsFilter(FilterMilitaryRequest request);
+		BaseResponse<MilitaryResponse> GetMilitaryStatutsFilter(FilterMilitaryRequest request);
 		Task<BaseResponse<MilitaryResponse>> GetMilitaryStatusById(int id);
 	}
 }

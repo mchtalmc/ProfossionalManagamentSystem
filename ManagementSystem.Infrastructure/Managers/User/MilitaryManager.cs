@@ -44,7 +44,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 			throw new NotImplementedException();
 		}
 
-		public Task<BaseResponse<MilitaryResponse>> GetMilitaryStatutsFilter(FilterMilitaryRequest request)
+		public BaseResponse<MilitaryResponse> GetMilitaryStatutsFilter(FilterMilitaryRequest request)
 		{
 			throw new NotImplementedException();
 		}

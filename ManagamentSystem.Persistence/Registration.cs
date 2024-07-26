@@ -8,7 +8,7 @@ namespace ManagamentSystem.Persistance
 	{
 		public static void AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
 		{
-			string connectionString = configuration.GetConnectionString("DB") ?? "_noconfiguration";
+			string connectionString = configuration.GetConnectionString("database") ?? "_noconfiguration";
 			services.AddDbContext<ManagamentContext>(options =>
 				options.UseSqlServer(connectionString));
 		}
