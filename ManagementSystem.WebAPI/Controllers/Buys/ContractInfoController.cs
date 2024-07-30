@@ -1,5 +1,6 @@
 ﻿using MagamentSystem.Application.DataTransferObject.Buy.Contractİnfo;
 using MagamentSystem.Application.Managers.Buy;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace ManagementSystem.WebAPI.Controllers.Buys
 	[Route("api/[controller]")]
 	[ApiExplorerSettings(GroupName = "contractInfoService")]
 	[ApiController]
+	[Authorize]
 	public class ContractInfoController : ControllerBase
 	{
 		private readonly IContractInfoManager _contractInfoManager;

@@ -1,6 +1,6 @@
 ﻿using MagamentSystem.Application.DataTransferObject.Buy.SueDetails;
 using MagamentSystem.Application.Managers.Buy;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagementSystem.WebAPI.Controllers.Buys
@@ -8,6 +8,7 @@ namespace ManagementSystem.WebAPI.Controllers.Buys
 	[Route("api/[controller]")]
 	[ApiExplorerSettings(GroupName = "sueDetailsService")]
 	[ApiController]
+	[Authorize]
 	public class SueDetailsController : ControllerBase
 	{
 		private readonly ISueDetailManager _sueDetailManager;

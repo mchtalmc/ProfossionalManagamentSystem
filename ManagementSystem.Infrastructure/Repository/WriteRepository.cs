@@ -29,7 +29,6 @@ namespace ManagementSystem.Infrastructure.Repository
 			EntityEntry entityEntry = Table.Update(entity);
 			entityEntry.State = EntityState.Deleted;
 			entity.RemovedDate = DateTime.UtcNow;
-			entity.RemovedBy = 1; // Bu DUZENLENECEK SILEN KISI GELMESINI ISTOYURM
 			return true;
 
 		}
@@ -44,7 +43,6 @@ namespace ManagementSystem.Infrastructure.Repository
 			EntityEntry entityEntry = Table.Update(entity);
 			entityEntry.State = EntityState.Modified;
 			entity.ModifiedDate = DateTime.UtcNow;
-			entity.ModifiedBy=1; // Bu da degıstıren kısı olacak yapılması gereknler
 			return true;
 		}
 	}

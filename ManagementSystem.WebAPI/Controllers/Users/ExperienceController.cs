@@ -1,5 +1,6 @@
 ﻿using MagamentSystem.Application.DataTransferObject.User.Experience;
 using MagamentSystem.Application.Managers.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagementSystem.WebAPI.Controllers.Users
@@ -7,6 +8,7 @@ namespace ManagementSystem.WebAPI.Controllers.Users
 	[Route("api/[controller]")]
 	[ApiExplorerSettings(GroupName = "experienceService")]
 	[ApiController]
+	[Authorize]
 	public class ExperienceController : ControllerBase
 	{
 		private readonly IExperienceManger _experienceManager;

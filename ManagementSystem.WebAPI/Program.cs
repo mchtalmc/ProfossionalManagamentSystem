@@ -16,9 +16,9 @@ builder.Services.AddAuthentication(options =>
 {
 	o.TokenValidationParameters = new TokenValidationParameters
 	{
-		ValidIssuer = builder.Configuration["Token:ValidIssuer"],
-		ValidAudience = builder.Configuration["Token:ValidAudience"],
-		IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:Secret"]?.ToString() ?? "_noconfiguration")),
+		ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+		ValidAudience = builder.Configuration["JWT:ValidAudience"],
+		IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]?.ToString() ?? "_noconfiguration")),
 		ValidateIssuer = true,
 		ValidateAudience = true,
 		ValidateLifetime = false,
@@ -32,7 +32,7 @@ builder.Services.AddAuthorization(options =>
 		options.AddPolicy(item, policy =>
 		{
 			policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
-			policy.RequireClaim("Permission", item);
+			policy.RequireClaim("CustomPermissions", item);
 		});
 	}
 });

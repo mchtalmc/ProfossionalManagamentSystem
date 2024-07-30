@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using MagamentSystem.Application.DataTransferObject.User.Military;
 using MagamentSystem.Application.Managers.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagementSystem.WebAPI.Controllers.Users
@@ -8,6 +9,7 @@ namespace ManagementSystem.WebAPI.Controllers.Users
 	[Route("api/[controller]")]
 	[ApiExplorerSettings(GroupName = "militaryService")]
 	[ApiController]
+	[Authorize]
 	public class MilitaryController : ControllerBase
 	{
 		private readonly IMilitaryManager _militaryManager;

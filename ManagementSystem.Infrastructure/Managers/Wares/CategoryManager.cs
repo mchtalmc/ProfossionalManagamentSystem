@@ -69,7 +69,7 @@ namespace ManagementSystem.Infrastructure.Managers.Wares
 			{
 				CategoryResponse map = new CategoryResponse
 				{
-					AddedBy = data.Id,
+					AddedBy = data.AddedBy,
 					CreatedDate = data.CreatedDate,
 					Id = data.Id,
 					ModifiedBy=data.ModifiedBy,

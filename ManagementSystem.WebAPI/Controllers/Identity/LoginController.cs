@@ -25,12 +25,12 @@ namespace ManagementSystem.WebAPI.Controllers.Identity
 			var response= await _authHandler.Login(request);
 			return Ok(response);
 		}
-		//[HttpGet("UserInfo")]
-		//public async Task<IActionResult> UserInfo( )
-		//{
-		//	var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-		//	var user = await _tokenHandler.ValidateTokenAndGetUser(token);
-		//	return Ok(user);
-		//}
+		[HttpGet("UserInfo")]
+		public async Task<IActionResult> UserInfo()
+		{
+			var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+			var user = await _tokenHandler.ValidateTokenAndGetUser(token);
+			return Ok(user);
+		}
 	}
 }

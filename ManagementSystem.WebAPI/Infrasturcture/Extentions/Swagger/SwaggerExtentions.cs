@@ -2,6 +2,8 @@
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 
 namespace ManagementSystem.WebAPI.Infrastructure.Extensions.Swagger
 {
@@ -138,6 +140,9 @@ namespace ManagementSystem.WebAPI.Infrastructure.Extensions.Swagger
 					Version = "v1",
 					Description = "The procedures  about the User Permission will be done here."
 				});
+
+
+
 				#endregion
 
 
@@ -149,7 +154,7 @@ namespace ManagementSystem.WebAPI.Infrastructure.Extensions.Swagger
 					Scheme = "Bearer",
 					BearerFormat = "JWT",
 					In = ParameterLocation.Header,
-					Description = "JWT Authorization header using Bearer scheme."
+					Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer ey54342sacbgfd30943\"",
 				});
 
 

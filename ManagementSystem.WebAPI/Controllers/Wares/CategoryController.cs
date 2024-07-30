@@ -1,13 +1,16 @@
 ﻿using MagamentSystem.Application.DataTransferObject.Wares.Category;
 using MagamentSystem.Application.Managers.Wares;
 using ManagamentSystem.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ManagementSystem.WebAPI.Controllers.Wares
 {
 	[Route("api/[controller]")]
 	[ApiExplorerSettings(GroupName = "categoryService")]
 	[ApiController]
+	[Authorize]
 	public class CategoryController : ControllerBase
 	{
 		private readonly ICategoryManager _categoryManager;
@@ -16,18 +19,20 @@ namespace ManagementSystem.WebAPI.Controllers.Wares
 		{
 			_categoryManager = categoryManager;
 		}
+	
 		[HttpPost("Create Category")]
 		public async Task<IActionResult> CreateCategory([FromBody]CreateCategoryRequest request)
 		{
-			var loginUserId = User?.FindFirst("id")?.Value;
-			/request.AddedBy = int.Parse(loginUserId);
+
+			var loginUserId = User.Claims.FirstOrDefault(x => x.Type == "id")?.Value;
+			request.AddedBy = int.Parse(loginUserId);
 			var response= await _categoryManager.CreateCategory(request);
 			return Ok(response);
 		}
 		[HttpPut("Update Category")]
 		public async Task<IActionResult> UpdateCategory([FromBody]UpdateCategoryRequest request)
 		{
-			var loginUserId = User?.FindFirst("id")?.Value;
+			var loginUserId = User.Claims.FirstOrDefault(x => x.Type == "id")?.Value;
 			request.ModifiedBy = int.Parse(loginUserId);
 			var response= await _categoryManager.UpdateCategory(request);
 			return Ok(response);
@@ -35,7 +40,7 @@ namespace ManagementSystem.WebAPI.Controllers.Wares
 		[HttpDelete]
 		public async Task<IActionResult> RemoveCategory(RemoveCategoryRequest request)
 		{
-			var loginUserId = User?.FindFirst("id")?.Value;
+			var loginUserId = User.Claims.FirstOrDefault(x => x.Type == "id")?.Value;
 			request.RemovedBy = int.Parse(loginUserId);
 			var response = await _categoryManager.DeleteCategory(request);
 			return Ok(response);

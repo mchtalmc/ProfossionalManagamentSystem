@@ -81,16 +81,17 @@ namespace ManagementSystem.Infrastructure.Services.JwtTokenServices
 				}, out SecurityToken validatedToken);
 
 				var jwtToken = (JwtSecurityToken)validatedToken;
-				var appUserId = jwtToken.Claims.FirstOrDefault(x => x.Type == "id")?.Value;
+				var appUserIdClaim = jwtToken.Claims.FirstOrDefault(x => x.Type == "id")?.Value;
 
-				if (string.IsNullOrEmpty(appUserId))
+				if (string.IsNullOrEmpty(appUserIdClaim))
 				{
-					throw new Exception("Invalid token");
+					throw new Exception("Invalid token: Missing user ID claim");
 				}
 
-				var user = await _userReadRepository.GetSingleById(Convert.ToInt32(appUserId));
+				var userId = int.Parse(appUserIdClaim);
+				var user = await _userReadRepository.GetSingleById(userId);
 
-				if (user is null)
+				if (user == null)
 				{
 					throw new Exception("User not found. Please Register");
 				}
@@ -99,9 +100,10 @@ namespace ManagementSystem.Infrastructure.Services.JwtTokenServices
 			}
 			catch (Exception ex)
 			{
-				throw new Exception(ex.Message);
+				throw new Exception("Token validation failed", ex);
 			}
 		}
+
 
 	}
 }

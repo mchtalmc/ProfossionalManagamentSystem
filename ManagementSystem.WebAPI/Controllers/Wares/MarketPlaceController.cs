@@ -1,5 +1,6 @@
 ﻿using MagamentSystem.Application.DataTransferObject.Wares.MarketPlace;
 using MagamentSystem.Application.Managers.Wares;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace ManagementSystem.WebAPI.Controllers.Wares
 	[Route("api/[controller]")]
 	[ApiExplorerSettings(GroupName = "marketPlaceService")]
 	[ApiController]
+	[Authorize]
 	public class MarketPlaceController : ControllerBase
 	{
 		private readonly IMarketPlaceManager _marketPlaceManager;

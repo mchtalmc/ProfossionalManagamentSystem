@@ -1,5 +1,6 @@
 ﻿using MagamentSystem.Application.DataTransferObject.Wares.Producer;
 using MagamentSystem.Application.Managers.Wares;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagementSystem.WebAPI.Controllers.Wares
@@ -7,6 +8,7 @@ namespace ManagementSystem.WebAPI.Controllers.Wares
 	[Route("api/[controller]")]
 	[ApiExplorerSettings(GroupName = "producerService")]
 	[ApiController]
+	[Authorize]
 	public class ProducerController : ControllerBase
 	{
 		private readonly IProducerManager _producerManager;

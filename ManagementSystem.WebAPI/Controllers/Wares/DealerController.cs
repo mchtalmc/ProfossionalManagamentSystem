@@ -1,5 +1,6 @@
 ﻿using MagamentSystem.Application.DataTransferObject.Wares.Dealer;
 using MagamentSystem.Application.Managers.Wares;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace ManagementSystem.WebAPI.Controllers.Wares
 	[Route("api/[controller]")]
 	[ApiExplorerSettings(GroupName = "dealerService")]
 	[ApiController]
+	[Authorize]
 	public class DealerController : ControllerBase
 	{
 		private readonly IDealersManager _dealerManager;
