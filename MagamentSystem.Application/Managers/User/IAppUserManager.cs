@@ -1,5 +1,6 @@
 ﻿using MagamentSystem.Application.DataTransferObject;
 using MagamentSystem.Application.DataTransferObject.User.AppUser;
+using ManagamentSystem.Core.Entities;
 
 namespace MagamentSystem.Application.Managers.User
 {
@@ -10,8 +11,9 @@ namespace MagamentSystem.Application.Managers.User
 		Task<BaseResponse<bool>> DeleteAppUser(RemoveAppUserRequest request);
 		BaseResponse<List<AppUserResponse>> GetAllAppUser();
 		BaseResponse<List<AppUserResponse>> GetAllAppUserFilter(FilterAppUserRequest request);
-		Task<BaseResponse<AppUserResponse>> GetAppUserFilter(FilterAppUserRequest request);
+		BaseResponse<AppUserResponse> GetAppUserFilter(FilterAppUserRequest request);
 		Task<BaseResponse<AppUserResponse>> GetAppUserById(int id);
+		AppUser CheckRegister(string email,  string password);
 
 
 	}

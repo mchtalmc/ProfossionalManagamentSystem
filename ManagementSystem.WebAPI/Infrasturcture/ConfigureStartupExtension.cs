@@ -1,7 +1,5 @@
-﻿using MagamentSystem.Application;
-using ManagamentSystem.Persistance;
-using ManagementSystem.Infrastructure;
-using ManagementSystem.WebAPI.Infrastructure.Extensions.Security;
+﻿using ManagamentSystem.Persistance;
+using ManagementSystem.Infrastructure;  // Corrected namespace
 using ManagementSystem.WebAPI.Infrastructure.Extensions.Swagger;
 
 namespace ManagementSystem.WebAPI.Infrastructure
@@ -10,15 +8,23 @@ namespace ManagementSystem.WebAPI.Infrastructure
 	{
 		public static WebApplicationBuilder ConfigureBuilder(this WebApplicationBuilder builder)
 		{
-			builder.Services.AddInfrasturctureServices(builder.Configuration);
+			
+		//	builder.Configuration.GetSection("TokenSettings").Get<TokenSettings>();
+		//Elbet buna donecegiz Dert etmeye gerek yok , simdilik NUll donsun
+
+			// Register services
+			
+			builder.Services.AddInfrasturctureServices(builder.Configuration); 
 			builder.Services.AddSwaggerServices();
-			builder.Services.ConfigureAuth(builder.Configuration);
+			builder.Services.AddPersistenceServices(builder.Configuration);
 			
-			builder.Services.AddApplicationRegistration(builder.Configuration);
 			
+
+
+
+			
+
 			return builder;
 		}
-
-	
 	}
 }

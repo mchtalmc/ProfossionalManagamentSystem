@@ -1,4 +1,5 @@
-﻿using ManagamentSystem.Core.Entities.UserInformatıons;
+﻿using ManagamentSystem.Core.Entities.CustomIdentity;
+using ManagamentSystem.Core.Entities.UserInformatıons;
 
 namespace ManagamentSystem.Core.Entities
 {
@@ -15,6 +16,8 @@ namespace ManagamentSystem.Core.Entities
         public ICollection<HealthStatus>     HealthStatuses { get; set; }
         public ICollection<Experience> Experiences { get; set; }
         public ICollection<EducationStatus> EducationStatuses { get; set; }
+        public ICollection<UserPermission>       UserPermissions { get; set; }
+        
 
 
 

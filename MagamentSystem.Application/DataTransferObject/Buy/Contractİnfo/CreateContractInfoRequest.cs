@@ -11,5 +11,6 @@
 		public int SueDetailsId { get; set; }
         public int AddedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public bool IsSuccess { get; set; }
     }
 }

@@ -12,6 +12,7 @@
 		public string Title { get; set; }
 		public bool Gender { get; set; }
         public int ModifiedBy { get; set; }
+        public bool IsStatus { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
 }

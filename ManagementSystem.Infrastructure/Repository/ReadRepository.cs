@@ -14,7 +14,7 @@ namespace ManagementSystem.Infrastructure.Repository
 			_context = context;
 		}
 
-		public DbSet<T> Table => throw new NotImplementedException();
+		public DbSet<T> Table => _context.Set<T>();
 
 		public IQueryable<T> GetAll()
 		=> Table;
@@ -27,7 +27,7 @@ namespace ManagementSystem.Infrastructure.Repository
 
 		public async Task<T> GetSingleById(int id)
 		{
-			var value= await Table.FirstOrDefaultAsync(x => x.Id == id);
+			var value = await Table.Where(x => x.Id == id).FirstOrDefaultAsync();
 			return value;
 		}
 

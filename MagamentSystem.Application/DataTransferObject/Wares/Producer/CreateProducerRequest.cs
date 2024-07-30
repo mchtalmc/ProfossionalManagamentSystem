@@ -8,5 +8,6 @@
 		public string Email { get; set; }
         public int AddedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public bool IsStatus { get; set; }
     }
 }

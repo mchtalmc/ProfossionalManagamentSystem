@@ -1,4 +1,5 @@
-﻿using MagamentSystem.Application.DataTransferObject.User.Education;
+﻿using Azure.Core;
+using MagamentSystem.Application.DataTransferObject.User.Education;
 using MagamentSystem.Application.Managers.User;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,18 +19,24 @@ namespace ManagementSystem.WebAPI.Controllers.Users
 		[HttpPost("CreateEducationInformation's")]
 		public async Task<IActionResult> CreateEducationInfo([FromBody] CreateEducationRequest req)
 		{
+			var loginUserId = User?.FindFirst("id")?.Value;
+			req.AddedBy = int.Parse(loginUserId);
 			var response = await _educationManager.CreateEducation(req);
 			return Ok(response);
 		}
 		[HttpPut("UpdateEducationInformation's")]
 		public async Task<IActionResult> UpdateEducationInfo([FromBody] UpdateEducationRequest req)
 		{
+			var loginUserId = User?.FindFirst("id")?.Value;
+			req.ModifiedBy = int.Parse(loginUserId);
 			var response = await _educationManager.UpdateEducation(req);
 			return Ok(response);
 		}
 		[HttpDelete("RemoveEducationInfo")]
 		public async Task<IActionResult> RemoveEducationInfo([FromQuery]RemoveEducationRequest req)
 		{
+			var loginUserId = User?.FindFirst("id")?.Value;
+			req.RemovedBy = int.Parse(loginUserId);
 			var response = await _educationManager.DeleteEducation(req);
 			return Ok(response);
 		}

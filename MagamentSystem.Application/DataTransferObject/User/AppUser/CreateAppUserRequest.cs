@@ -11,6 +11,7 @@
 		public string Title { get; set; }
 		public bool Gender { get; set; }
         public int AddedBy { get; set; }
+        public bool IsStatus { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

@@ -9,6 +9,7 @@
 		public int AppUserId { get; set; }
 		public int SueDetailsId { get; set; }
         public int ModifiedBy { get; set; }
+        public bool IsStatus { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
 }

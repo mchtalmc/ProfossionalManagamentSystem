@@ -2,6 +2,6 @@
 {
 	public class FilterMilitaryRequest
 	{
-		public bool IsDone { get; set; }
+		public bool? IsDone { get; set; }
 	}
 }

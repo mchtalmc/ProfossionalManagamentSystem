@@ -1,4 +1,5 @@
-﻿using MagamentSystem.Application.DataTransferObject.User.Healt;
+﻿using Azure.Core;
+using MagamentSystem.Application.DataTransferObject.User.Healt;
 using MagamentSystem.Application.Managers.User;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,12 +19,16 @@ namespace ManagementSystem.WebAPI.Controllers.Users
 		[HttpPost("CreateHealtStatus")]
 		public async Task<IActionResult> CreateHealtsSatus([FromBody]CreateHealtyRequest req)
 		{
+			var loginUserId = User?.FindFirst("id")?.Value;
+			req.AddedBy = int.Parse(loginUserId);
 			var response= await _healtManager.CreateHealtStatus(req);
 			return Ok(response);
 		}
 		[HttpPut("UpdateHealtStatus")]
 		public async Task<IActionResult> UpdateHealtStatus([FromBody]UpdateHealtyRequest req)
 		{
+			var loginUserId = User?.FindFirst("id")?.Value;
+			req.ModifiedBy = int.Parse(loginUserId);
 			var response = await _healtManager.UpdateHealtStatus(req);
 				return Ok(response);
 			
@@ -31,6 +36,8 @@ namespace ManagementSystem.WebAPI.Controllers.Users
 		[HttpDelete("RemoveHealtStatus")]
 		public async Task<IActionResult> RemoveHealtSatus([FromQuery]RemoveHealtyRequest req)
 		{
+			var loginUserId = User?.FindFirst("id")?.Value;
+			req.RemovedBy = int.Parse(loginUserId);
 			var response= await _healtManager.DeleteHealtStatus(req);
 			return Ok(response);
 		}

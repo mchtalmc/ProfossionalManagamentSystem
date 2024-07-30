@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MagamentSystem.Application.DataTransferObject;
+using MagamentSystem.Application.DataTransferObject.Buy.Contractor;
+using MagamentSystem.Application.DataTransferObject.User.AppUser;
 
 namespace MagamentSystem.Application.Managers.Buy
 {
-	internal class IContractorManager
+	public interface IContractorManager
 	{
+		Task<BaseResponse<bool>> CreateContractor(CreateContractorRequest request);
+		Task<BaseResponse<bool>> UpdateContractor(UpdateContractorRequest request);
+		Task<BaseResponse<bool>> DeleteContractor(RemoveContractorRequest request);
+		BaseResponse<List<ContractorResponse>> GetAllContractor();
+		BaseResponse<List<ContractorResponse>> GetAllContractorFilter(FilterContractorRequest request);
+		BaseResponse<ContractorResponse> GetContractorFilter(FilterContractorRequest request);
+		Task<BaseResponse<ContractorResponse>> GetContractorById(int id);
 	}
 }

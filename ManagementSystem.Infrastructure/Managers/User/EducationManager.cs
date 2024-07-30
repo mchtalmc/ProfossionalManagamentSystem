@@ -11,18 +11,27 @@ namespace ManagementSystem.Infrastructure.Managers.User
 	{
 		private readonly IEducationReadRepository _educationReadRepository;
 		private readonly IEducationWriteRepository _educationWriteRepository;
-		private readonly IMapper _mapper;
+		
 
-		public EducationManager(IEducationReadRepository educationReadRepository, IEducationWriteRepository educationWriteRepository, IMapper mapper)
+		public EducationManager(IEducationReadRepository educationReadRepository, IEducationWriteRepository educationWriteRepository)
 		{
 			_educationReadRepository = educationReadRepository;
 			_educationWriteRepository = educationWriteRepository;
-			_mapper = mapper;
+			
 		}
 
 		public async Task<BaseResponse<bool>> CreateEducation(CreateEducationRequest request)
 		{
-			var dto = _mapper.Map<EducationStatus>(request);
+			EducationStatus dto = new EducationStatus
+			{
+				Department=request.Department,
+				GraduatedSchool=request.GraduatedSchool,
+				GraduationScore=request.GraduationScore,
+				YearOfGraduation=request.YearOfGraduation,
+				AddedBy=request.AddedBy,
+				IsStatus=request.IsStatus,
+				CreatedDate=DateTime.UtcNow
+			};
 			var response= await _educationWriteRepository.AddAsync(dto);
 			var save = await _educationWriteRepository.Save();
 			if(save < 0)
@@ -58,7 +67,26 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				return new BaseResponse<List<EducationResponse>>(false, "Education List's NOT FOUND");
 			}
 
-			var mapData = _mapper.Map<List<EducationResponse>>(getData);
+			List<EducationResponse> mapData = new List<EducationResponse>();
+			foreach (var data in getData)
+			{
+				EducationResponse response = new EducationResponse
+				{
+					Id= data.Id,
+					Department= data.Department,
+					GraduatedSchool= data.GraduatedSchool,
+					GraduationScore= data.GraduationScore,
+					YearOfGraduation=data.YearOfGraduation,
+					AddedBy=data.AddedBy,
+					ModifiedBy=data.ModifiedBy,
+					RemovedBy=data.ModifiedBy,
+					IsStatus=data.IsStatus,
+					CreatedDate=data.CreatedDate,
+					RemovedDate=data.RemovedDate,
+					ModifiedDate=data.ModifiedDate
+				};
+				mapData.Add(response);
+			}
 			return new BaseResponse<List<EducationResponse>>(mapData, true, "Education List's :");
 
 		}
@@ -91,7 +119,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				ModifiedDate=x.ModifiedDate,
 				RemovedBy=x.RemovedBy,
 				RemovedDate=x.RemovedDate,
-				UserId=x.AppUser.Id,
+				IsStatus=x.IsStatus,
 				YearOfGraduation = x.YearOfGraduation
 			}).ToList();
 			if(response is null)
@@ -109,7 +137,21 @@ namespace ManagementSystem.Infrastructure.Managers.User
 			{
 				return new BaseResponse<EducationResponse>(false, "Education Information's NOT FOUND");
 			}
-			var mapData = _mapper.Map<EducationResponse>(checkData);
+			EducationResponse mapData = new EducationResponse
+			{
+				Id=checkData.Id,
+				Department=checkData.Department,
+				GraduatedSchool=checkData.GraduatedSchool,
+				GraduationScore=checkData.GraduationScore,
+				YearOfGraduation=checkData.YearOfGraduation,
+				AddedBy=checkData.AddedBy,
+				ModifiedBy=checkData.ModifiedBy,
+				RemovedBy=checkData.RemovedBy,
+				IsStatus=checkData.IsStatus,
+				CreatedDate=checkData.CreatedDate,
+				RemovedDate=	checkData.RemovedDate,
+				ModifiedDate= checkData.ModifiedDate,
+			};
 			return new BaseResponse<EducationResponse>(mapData, true, "Education Information's RESULT");
 		}
 
@@ -141,7 +183,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				ModifiedDate = x.ModifiedDate,
 				RemovedBy = x.RemovedBy,
 				RemovedDate = x.RemovedDate,
-				UserId = x.AppUser.Id,
+				//UserId = x.AppUser.Id,
 				YearOfGraduation = x.YearOfGraduation
 			}).FirstOrDefault();
 			if(response is null)
@@ -159,8 +201,15 @@ namespace ManagementSystem.Infrastructure.Managers.User
 			{
 				return new BaseResponse<bool>(false, "Education Information's NOT FOUND");
 			}
-			var mapData = _mapper.Map(request, checkData);
-			var response= _educationWriteRepository.Update(mapData);
+			checkData.Department=request.Department;
+			checkData.GraduationScore=request.GraduationScore;
+			checkData.GraduationScore = request.GraduationScore;
+			checkData.YearOfGraduation=request.YearOfGraduation;
+			checkData.ModifiedBy=request.ModifiedBy;
+			checkData.IsStatus=request.IsStatus;
+			checkData.ModifiedDate = DateTime.UtcNow;
+
+			var response= _educationWriteRepository.Update(checkData);
 			var save = await _educationWriteRepository.Save();
 			if(save < 0)
 			{

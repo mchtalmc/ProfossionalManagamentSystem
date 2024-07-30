@@ -331,6 +331,184 @@ namespace ManagamentSystem.Persistance.Migrations
                     b.ToTable("SueDetails");
                 });
 
+            modelBuilder.Entity("ManagamentSystem.Core.Entities.CustomIdentity.CustomPermission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("RemovedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RemovedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomPermissions");
+                });
+
+            modelBuilder.Entity("ManagamentSystem.Core.Entities.CustomIdentity.CustomRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RemovedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RemovedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomRoles");
+                });
+
+            modelBuilder.Entity("ManagamentSystem.Core.Entities.CustomIdentity.RolePermission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomPermissionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomRoleId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RemovedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RemovedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomPermissionId");
+
+                    b.HasIndex("CustomRoleId");
+
+                    b.ToTable("RolePermissions");
+                });
+
+            modelBuilder.Entity("ManagamentSystem.Core.Entities.CustomIdentity.UserPermission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomPermissionId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("RemovedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RemovedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("CustomPermissionId");
+
+                    b.ToTable("UserPermissions");
+                });
+
             modelBuilder.Entity("ManagamentSystem.Core.Entities.UserInformatıons.EducationStatus", b =>
                 {
                     b.Property<int>("Id")
@@ -756,7 +934,7 @@ namespace ManagamentSystem.Persistance.Migrations
                     b.Property<int>("DealerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ExpirationDate")
+                    b.Property<DateTime?>("ExpirationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsStatus")
@@ -784,7 +962,7 @@ namespace ManagamentSystem.Persistance.Migrations
                     b.Property<int>("ProducerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ProductionDate")
+                    b.Property<DateTime?>("ProductionDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("RemovedBy")
@@ -856,6 +1034,44 @@ namespace ManagamentSystem.Persistance.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("ManagamentSystem.Core.Entities.CustomIdentity.RolePermission", b =>
+                {
+                    b.HasOne("ManagamentSystem.Core.Entities.CustomIdentity.CustomPermission", "CustomPermission")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("CustomPermissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ManagamentSystem.Core.Entities.CustomIdentity.CustomRole", "CustomRole")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("CustomRoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CustomPermission");
+
+                    b.Navigation("CustomRole");
+                });
+
+            modelBuilder.Entity("ManagamentSystem.Core.Entities.CustomIdentity.UserPermission", b =>
+                {
+                    b.HasOne("ManagamentSystem.Core.Entities.AppUser", "AppUser")
+                        .WithMany("UserPermissions")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ManagamentSystem.Core.Entities.CustomIdentity.CustomPermission", "CustomPermission")
+                        .WithMany("UserPermissions")
+                        .HasForeignKey("CustomPermissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("CustomPermission");
                 });
 
             modelBuilder.Entity("ManagamentSystem.Core.Entities.UserInformatıons.EducationStatus", b =>
@@ -944,6 +1160,20 @@ namespace ManagamentSystem.Persistance.Migrations
                     b.Navigation("Experiences");
 
                     b.Navigation("HealthStatuses");
+
+                    b.Navigation("UserPermissions");
+                });
+
+            modelBuilder.Entity("ManagamentSystem.Core.Entities.CustomIdentity.CustomPermission", b =>
+                {
+                    b.Navigation("RolePermissions");
+
+                    b.Navigation("UserPermissions");
+                });
+
+            modelBuilder.Entity("ManagamentSystem.Core.Entities.CustomIdentity.CustomRole", b =>
+                {
+                    b.Navigation("RolePermissions");
                 });
 #pragma warning restore 612, 618
         }

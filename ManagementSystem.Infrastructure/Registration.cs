@@ -1,10 +1,12 @@
 ﻿using FluentValidation;
+using MagamentSystem.Application.Managers.Buy;
 using MagamentSystem.Application.Managers.User;
-using MagamentSystem.Application.Repository;
+using MagamentSystem.Application.Managers.Wares;
 using MagamentSystem.Application.Repository.BuyRepository.ContractInfos;
 using MagamentSystem.Application.Repository.BuyRepository.Contractors;
 using MagamentSystem.Application.Repository.BuyRepository.SueDetail;
 using MagamentSystem.Application.Repository.BuyRepository.Sues;
+using MagamentSystem.Application.Repository.UserRepository.CustomIdentity;
 using MagamentSystem.Application.Repository.UserRepository.Educations;
 using MagamentSystem.Application.Repository.UserRepository.Experiences;
 using MagamentSystem.Application.Repository.UserRepository.Healts;
@@ -15,14 +17,18 @@ using MagamentSystem.Application.Repository.WaresRepository.Dealaers;
 using MagamentSystem.Application.Repository.WaresRepository.MarketPlaces;
 using MagamentSystem.Application.Repository.WaresRepository.Producers;
 using MagamentSystem.Application.Repository.WaresRepository.Products;
+using MagamentSystem.Application.Services.Authorization;
+using MagamentSystem.Application.Services.JwtTokenServices;
 using MagamentSystem.Application.Services.Security;
+using ManagementSystem.Infrastructure.Managers.Buy;
 using ManagementSystem.Infrastructure.Managers.User;
-using ManagementSystem.Infrastructure.Repository;
+using ManagementSystem.Infrastructure.Managers.Wares;
 using ManagementSystem.Infrastructure.Repository.Buy.ContractInfos;
 using ManagementSystem.Infrastructure.Repository.Buy.Contractors;
 using ManagementSystem.Infrastructure.Repository.Buy.SueDetails;
 using ManagementSystem.Infrastructure.Repository.Buy.Sues;
 using ManagementSystem.Infrastructure.Repository.Users.AppUsers;
+using ManagementSystem.Infrastructure.Repository.Users.CustomAuthorization;
 using ManagementSystem.Infrastructure.Repository.Users.Educations;
 using ManagementSystem.Infrastructure.Repository.Users.Experiences;
 using ManagementSystem.Infrastructure.Repository.Users.Healts;
@@ -32,6 +38,7 @@ using ManagementSystem.Infrastructure.Repository.Wares.Dealers;
 using ManagementSystem.Infrastructure.Repository.Wares.MarketPlaces;
 using ManagementSystem.Infrastructure.Repository.Wares.Producers;
 using ManagementSystem.Infrastructure.Repository.Wares.Products;
+using ManagementSystem.Infrastructure.Services.Authorization;
 using ManagementSystem.Infrastructure.Services.JwtTokenServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,7 +46,7 @@ using System.Reflection;
 
 namespace ManagementSystem.Infrastructure
 {
-    public static class Registration
+	public static class Registration
 	{
 		public static void AddInfrasturctureServices(this IServiceCollection services, IConfiguration configuration)
 		{
@@ -47,8 +54,9 @@ namespace ManagementSystem.Infrastructure
 			AddRepositoryService(services);
 			services.AddAutoMapper(Assembly.GetExecutingAssembly());
 			services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-		
-		
+			
+			services.AddTransient<ITokenHandler, TokenHandler>();
+			
 		}
 
 		public static void AddManagerService( IServiceCollection services)
@@ -60,14 +68,37 @@ namespace ManagementSystem.Infrastructure
 			services.AddTransient<IMilitaryManager, MilitaryManager>();
 			services.AddTransient<IExperienceManger,ExperienceManager>();
 			#endregion
+			#region Buy
+			services.AddTransient<IContractInfoManager, ContractInfoManager>();
+			services.AddTransient<IContractorManager, ContractorManager>();
+		//	services.AddTransient<ISueDetailManager, SueDetailsManager>();
+			services.AddTransient<ISueManager,SueManager>();
+			#endregion
 
-			
+			#region Wares
+			services.AddTransient<ICategoryManager, CategoryManager>();
+			services.AddTransient<IDealersManager, DealersManager>();
+			services.AddTransient<IProducerManager, ProducerManager>();
+			services.AddTransient<IProductManager, ProductManager>();
+			services.AddTransient<IMarketPlaceManager, MarketPlaceManager>();
+			#endregion
+			#region Authorization && Authantication
+			services.AddScoped<IAuthHandler, AuthHandler>();
+			services.AddScoped<ITokenHandler, TokenHandler>();
+
+			services.AddScoped<ICustomRoleService,CustomRoleService>();
+			services.AddScoped<ICustomPermissionService,  CustomPermissionService>();
+			services.AddScoped<IUserPermissionService, UserPermissionService>();
+			services.AddScoped<IRolePermissionService,RolePermissionService>();
+
+
+			#endregion
 
 
 
-			services.AddTransient<ITokenHandler, TokenHandler>();
 
-			
+
+
 		}
 		public static void AddRepositoryService(IServiceCollection services)
 		{
@@ -96,8 +127,8 @@ namespace ManagementSystem.Infrastructure
 			services.AddTransient<IContractorReadRepository, ContractorsReadRepository>();
 			services.AddTransient<IContractorWriteRepository,ContractorsWriteRepository>();
 
-			services.AddTransient<ISueDetailsReadRepository,SueDetailsReadRepository>();
-			services.AddTransient<ISueDetailsWriteRepository,SueDetailsWriteRepository>();
+			//services.AddTransient<ISueDetailsReadRepository,SueDetailsReadRepository>();
+			//services.AddTransient<ISueDetailsWriteRepository , SueDetailsWriteRepository>();
 
 			services.AddTransient<ISueWriteRepository, SueWriteRepository>();
 			services.AddTransient<ISueReadRepository, SueReadRepository>();
@@ -121,8 +152,22 @@ namespace ManagementSystem.Infrastructure
 			services.AddTransient<IMarketPlaceWriteRepository, MarketPlaceWriteRepository>();
 
 			#endregion
+			#region Authorization
+			services.AddScoped<ICustomRoleReadRepository,CustomRoleReadRepository>();
+			services.AddScoped<ICustomRoleWriteRepository,CustomRoleWritePermission>();
 
-			
+			services.AddScoped<ICustomPermissionReadRepository,CustomPermissionReadRepository>();
+			services.AddScoped<ICustomPermissionWriteRepository,CustomPermissionWriteRepository>();
+
+			services.AddScoped<IUserPermissionReadRepository , UserPermissionReadRepository>();
+			services.AddScoped<IUserPermissionWriteRepository,UserPermissionWriteRepository>();
+
+			services.AddScoped<IRolePermissionReadRepository, RolePermissionReadRepository>();
+			services.AddScoped<IRolePermissionWriteRepository, RolePermissionWriteRepository>();
+			#endregion
+
+
+
 
 		}
 	}

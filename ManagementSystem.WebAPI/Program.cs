@@ -1,24 +1,58 @@
-using ManagamentSystem.Persistance;
+using ManagamentSystem.Core.Constant;
+using ManagementSystem.WebAPI.Infrastructure;
 using ManagementSystem.WebAPI.Infrastructure.Extensions.Swagger;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure services
+builder.Services.AddAuthentication(options =>
+{
+	options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+	options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(o =>
+{
+	o.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidIssuer = builder.Configuration["Token:ValidIssuer"],
+		ValidAudience = builder.Configuration["Token:ValidAudience"],
+		IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:Secret"]?.ToString() ?? "_noconfiguration")),
+		ValidateIssuer = true,
+		ValidateAudience = true,
+		ValidateLifetime = false,
+		ValidateIssuerSigningKey = true
+	};
+});
+builder.Services.AddAuthorization(options =>
+{
+	foreach (string item in Permissions.GetPermissions())
+	{
+		options.AddPolicy(item, policy =>
+		{
+			policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+			policy.RequireClaim("Permission", item);
+		});
+	}
+});
+
+
+builder.ConfigureBuilder();
+
+
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
-builder.Services.AddPersistenceServices(builder.Configuration);
-
-// Add Swagger services
-builder.Services.AddSwaggerServices();
 
 var app = builder.Build();
 
-// Configure middleware
+
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Configure Swagger UI
+
 app.AddSwaggerUIServices(app.Environment);
 
 app.MapControllers();

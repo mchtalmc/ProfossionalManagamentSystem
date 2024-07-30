@@ -1,5 +1,6 @@
 ﻿using ManagamentSystem.Core.Entities;
 using ManagamentSystem.Core.Entities.Buy;
+using ManagamentSystem.Core.Entities.CustomIdentity;
 using ManagamentSystem.Core.Entities.UserInformatıons;
 using ManagamentSystem.Core.Entities.Wares;
 using Microsoft.EntityFrameworkCore;
@@ -25,4 +26,8 @@ public class ManagamentContext : DbContext
     public DbSet<Experience> Experiences { get; set; }
     public DbSet<HealthStatus> HealthStatuses { get; set; }
     public DbSet<MilitaryStatus> MilitaryStatuses { get; set; }
+    public DbSet<CustomRole> CustomRoles { get; set; }
+    public DbSet<CustomPermission> CustomPermissions { get; set; }
+    public DbSet<UserPermission> UserPermissions { get; set; }
+    public DbSet<RolePermission> RolePermissions { get; set; }
 }

@@ -8,5 +8,6 @@
 		public int Capacity { get; set; }
         public int ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public bool IsStatus { get; set; }
     }
 }
