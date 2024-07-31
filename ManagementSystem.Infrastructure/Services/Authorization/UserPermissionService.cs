@@ -21,8 +21,8 @@ namespace ManagementSystem.Infrastructure.Services.Authorization
 		{
 			UserPermission map = new UserPermission
 			{
-				AppUserId= userClaim.AppUserId,
-				CustomPermissionId=userClaim.CustomPermissionId,
+				AppUsersId= userClaim.AppUsersId,
+				CustomPermissionsId=userClaim.CustomPermissionsId,
 			};
 			var add = await _userPermissionWriteRepository.AddAsync(map);
 			var save = await _userPermissionWriteRepository.Save();
@@ -32,6 +32,27 @@ namespace ManagementSystem.Infrastructure.Services.Authorization
 			}
 			return new BaseResponse<object>(true, "User Permission Creating Operation SUCCESS");
 
+		}
+
+		public async Task<BaseResponse<object>> AddRange(List<CreateUserPermission> userClaims)
+		{
+			List<UserPermission> map = new List<UserPermission>();
+			foreach (var userClaim in userClaims)
+			{
+				UserPermission mapTo = new UserPermission
+				{
+					AppUsersId=userClaim.AppUsersId,
+					CustomPermissionsId= userClaim.CustomPermissionsId,
+				};
+				map.Add(mapTo);
+			}
+			var addRange = await _userPermissionWriteRepository.AddRangeAsync(map);
+			var save = await _userPermissionWriteRepository.Save();
+			if(save < 0)
+			{
+				return new BaseResponse<object>(false, "Add Range Operation FAILED");
+			}
+			return new BaseResponse<object>(true, "Add Range Operation SUCCESS");
 		}
 
 		public async Task<BaseResponse<ResultUserPermission>> GetUserClaimById(int id)
@@ -44,8 +65,8 @@ namespace ManagementSystem.Infrastructure.Services.Authorization
 			ResultUserPermission userPermission = new ResultUserPermission
 			{
 				Id=checkData.Id,
-				CustomPermissionId=checkData.CustomPermissionId,
-				AppUserId=checkData.AppUserId
+				CustomPermissionsId=checkData.CustomPermissionsId,
+				AppUsersId=checkData.AppUsersId
 			};
 			return new BaseResponse<ResultUserPermission>(userPermission, true, "User Permission :");
 		}
@@ -63,8 +84,8 @@ namespace ManagementSystem.Infrastructure.Services.Authorization
 				ResultUserPermission mapTo = new ResultUserPermission
 				{
 					Id=data.Id,
-					CustomPermissionId=data.CustomPermissionId,
-					AppUserId=data.AppUserId
+					CustomPermissionsId=data.CustomPermissionsId,
+					AppUsersId=data.AppUsersId
 				};
 				list.Add(mapTo);
 			}
@@ -73,7 +94,7 @@ namespace ManagementSystem.Infrastructure.Services.Authorization
 
 		public List<string> GetUserPermissionWithUserId(int userId)
 		{
-			var datas = _userPermissionReadRepository.GetAll().Where(x=>x.AppUserId==userId).ToList();
+			var datas = _userPermissionReadRepository.GetAll().Where(x=>x.AppUsersId==userId).ToList();
 			var response= datas.Select(x=>x.CustomPermission.Value).ToList();
 			return response;
 		
@@ -88,8 +109,8 @@ namespace ManagementSystem.Infrastructure.Services.Authorization
 			{
 				return new BaseResponse<object>(false, "User Permission NOT FOUND");
 			}
-			checkData.AppUserId = userClaim.AppUserId;
-			checkData.CustomPermissionId = userClaim.CustomPermissionId;
+			checkData.AppUsersId = userClaim.AppUsersId;
+			checkData.CustomPermissionsId = userClaim.CustomPermissionsId;
 			var update= _userPermissionWriteRepository.Update(checkData);
 			var save = await _userPermissionWriteRepository.Save();
 			if(save < 0)

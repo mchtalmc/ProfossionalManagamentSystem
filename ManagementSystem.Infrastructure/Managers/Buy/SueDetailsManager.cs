@@ -1,12 +1,8 @@
-﻿using AutoMapper;
-using Azure.Core;
-using MagamentSystem.Application.DataTransferObject;
+﻿using MagamentSystem.Application.DataTransferObject;
 using MagamentSystem.Application.DataTransferObject.Buy.SueDetails;
-using MagamentSystem.Application.DataTransferObject.User.AppUser;
 using MagamentSystem.Application.Managers.Buy;
 using ManagamentSystem.Core.Entities.Buy;
 using ManagementSystem.Infrastructure.Repository.Buy.SueDetails;
-using Microsoft.IdentityModel.Tokens;
 
 namespace ManagementSystem.Infrastructure.Managers.Buy
 {

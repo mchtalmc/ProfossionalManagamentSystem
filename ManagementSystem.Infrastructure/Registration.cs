@@ -4,7 +4,6 @@ using MagamentSystem.Application.Managers.User;
 using MagamentSystem.Application.Managers.Wares;
 using MagamentSystem.Application.Repository.BuyRepository.ContractInfos;
 using MagamentSystem.Application.Repository.BuyRepository.Contractors;
-using MagamentSystem.Application.Repository.BuyRepository.SueDetail;
 using MagamentSystem.Application.Repository.BuyRepository.Sues;
 using MagamentSystem.Application.Repository.UserRepository.CustomIdentity;
 using MagamentSystem.Application.Repository.UserRepository.Educations;
@@ -25,7 +24,6 @@ using ManagementSystem.Infrastructure.Managers.User;
 using ManagementSystem.Infrastructure.Managers.Wares;
 using ManagementSystem.Infrastructure.Repository.Buy.ContractInfos;
 using ManagementSystem.Infrastructure.Repository.Buy.Contractors;
-using ManagementSystem.Infrastructure.Repository.Buy.SueDetails;
 using ManagementSystem.Infrastructure.Repository.Buy.Sues;
 using ManagementSystem.Infrastructure.Repository.Users.AppUsers;
 using ManagementSystem.Infrastructure.Repository.Users.CustomAuthorization;
@@ -52,10 +50,9 @@ namespace ManagementSystem.Infrastructure
 		{
 			AddManagerService(services);
 			AddRepositoryService(services);
-			services.AddAutoMapper(Assembly.GetExecutingAssembly());
 			services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-			
 			services.AddTransient<ITokenHandler, TokenHandler>();
+			
 			
 		}
 

@@ -1,8 +1,5 @@
-﻿using AutoMapper;
-using Azure.Core;
-using MagamentSystem.Application.DataTransferObject;
+﻿using MagamentSystem.Application.DataTransferObject;
 using MagamentSystem.Application.DataTransferObject.Buy.Contractor;
-using MagamentSystem.Application.DataTransferObject.User.AppUser;
 using MagamentSystem.Application.Managers.Buy;
 using MagamentSystem.Application.Repository.BuyRepository.Contractors;
 using ManagamentSystem.Core.Entities.Buy;

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MagamentSystem.Application.DataTransferObject;
+﻿using MagamentSystem.Application.DataTransferObject;
 using MagamentSystem.Application.DataTransferObject.Wares.Dealer;
 using MagamentSystem.Application.Managers.Wares;
 using MagamentSystem.Application.Repository.WaresRepository.Dealaers;

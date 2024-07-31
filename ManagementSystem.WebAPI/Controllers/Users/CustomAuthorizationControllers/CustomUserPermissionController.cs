@@ -33,5 +33,17 @@ namespace ManagementSystem.WebAPI.Controllers.Users.CustomAuthorizationControlle
 			var response= await _userPermissionService.GetUserClaimById(userPermissionId);
 			return Ok(response);
 		}
+		[HttpGet("UserPermissionList")]
+		public IActionResult UserPermissionList()
+		{
+			var response= _userPermissionService.GetUserClaimList();
+			return Ok(response);
+		}
+		[HttpPost("AddRange")]
+		public async Task<IActionResult> AddRangeUserPermission(List<CreateUserPermission> request)
+		{
+			var response = await _userPermissionService.AddRange(request);
+			return Ok(response);
+		}
 	}
 }

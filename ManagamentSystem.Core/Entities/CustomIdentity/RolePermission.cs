@@ -2,11 +2,11 @@
 {
 	public class RolePermission :BaseEntity
 	{
-    
-        public int RoleId { get; set; }
-        public int PermissionId { get; set; }
-        public CustomRole CustomRole { get; set; }
-        public CustomPermission CustomPermission { get; set; }
+
+		public int CustomRolesId { get; set; }
+		public int CustomPermissionsId { get; set; }
+		public CustomRole CustomRoles { get; set; }
+        public CustomPermission CustomPermissions { get; set; }
 
     }
 }

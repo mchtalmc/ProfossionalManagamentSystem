@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MagamentSystem.Application.DataTransferObject;
+﻿using MagamentSystem.Application.DataTransferObject;
 using MagamentSystem.Application.DataTransferObject.Wares.Product;
 using MagamentSystem.Application.Managers.Wares;
 using MagamentSystem.Application.Repository.WaresRepository.Products;
@@ -11,13 +10,13 @@ namespace ManagementSystem.Infrastructure.Managers.Wares
 	{
 		private readonly IProductReadRepository _productReadRepository;
 		private readonly IProductWriteRepository _productWriteRepository;
-		private readonly IMapper _mapper;
+		
 
-		public ProductManager(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository, IMapper mapper)
+		public ProductManager(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository)
 		{
 			_productReadRepository = productReadRepository;
 			_productWriteRepository = productWriteRepository;
-			_mapper = mapper;
+			
 		}
 
 		public async Task<BaseResponse<bool>> CreateProduct(CreateProductRequest request)

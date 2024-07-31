@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MagamentSystem.Application.DataTransferObject;
+﻿using MagamentSystem.Application.DataTransferObject;
 using MagamentSystem.Application.DataTransferObject.User.Education;
 using MagamentSystem.Application.Managers.User;
 using MagamentSystem.Application.Repository.UserRepository.Educations;
@@ -30,6 +29,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				YearOfGraduation=request.YearOfGraduation,
 				AddedBy=request.AddedBy,
 				IsStatus=request.IsStatus,
+				AppUserId=request.Ap
 				CreatedDate=DateTime.UtcNow
 			};
 			var response= await _educationWriteRepository.AddAsync(dto);
@@ -102,10 +102,10 @@ namespace ManagementSystem.Infrastructure.Managers.User
 			{
 				query=query.Where(x=> x.GraduatedSchool.Contains(request.GraduatedSchool));
 			}
-			if (!string.IsNullOrEmpty(request.YearOfGraduation.Year.ToString()))
+			if (!string.IsNullOrEmpty(request.YearOfGraduation.Value.ToString())) ;
 			{
-				int year = request.YearOfGraduation.Year;
-				query = query.Where(x => x.YearOfGraduation.Year == year); // Guvenmiyorum ama is gorur gibi
+				;
+				//query = query.Where(x => x.YearOfGraduation.Year == request); // Guvenmiyorum ama is gorur gibi
 			}
 			var response = query.Where(x=>x.RemovedDate == null).Select(x => new EducationResponse
 			{
@@ -118,6 +118,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				ModifiedBy=x.ModifiedBy,
 				ModifiedDate=x.ModifiedDate,
 				RemovedBy=x.RemovedBy,
+				AppUserId=x.AppUserId,
 				RemovedDate=x.RemovedDate,
 				IsStatus=x.IsStatus,
 				YearOfGraduation = x.YearOfGraduation

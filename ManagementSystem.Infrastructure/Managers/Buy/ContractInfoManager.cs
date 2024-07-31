@@ -1,11 +1,8 @@
-﻿using AutoMapper;
-using MagamentSystem.Application.DataTransferObject;
+﻿using MagamentSystem.Application.DataTransferObject;
 using MagamentSystem.Application.DataTransferObject.Buy.Contractİnfo;
-using MagamentSystem.Application.DataTransferObject.User.AppUser;
 using MagamentSystem.Application.Managers.Buy;
 using MagamentSystem.Application.Repository.BuyRepository.ContractInfos;
 using ManagamentSystem.Core.Entities.Buy;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ManagementSystem.Infrastructure.Managers.Buy
 {

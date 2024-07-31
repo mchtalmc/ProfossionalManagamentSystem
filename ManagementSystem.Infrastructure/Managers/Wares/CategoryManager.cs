@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using MagamentSystem.Application.DataTransferObject;
-using MagamentSystem.Application.DataTransferObject.Buy.Contractİnfo;
+﻿using MagamentSystem.Application.DataTransferObject;
 using MagamentSystem.Application.DataTransferObject.Wares.Category;
 using MagamentSystem.Application.Managers.Wares;
 using MagamentSystem.Application.Repository.WaresRepository.Categoryies;

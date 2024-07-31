@@ -1,6 +1,5 @@
 ﻿using MagamentSystem.Application.DataTransferObject.User.AppUser;
 using MagamentSystem.Application.Managers.User;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagementSystem.WebAPI.Controllers.Users

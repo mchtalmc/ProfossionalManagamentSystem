@@ -24,6 +24,19 @@ namespace ManagementSystem.Infrastructure.Repository
 			return true;
 		}
 
+		
+
+		public async Task<bool> AddRangeAsync(List<T> entities)
+		{
+			await Table.AddRangeAsync(entities);
+			foreach (var entity in entities)
+			{
+				entity.CreatedDate = DateTime.UtcNow;
+			}
+			return true;
+		}
+
+
 		public bool Remove(T entity)
 		{
 			EntityEntry entityEntry = Table.Update(entity);

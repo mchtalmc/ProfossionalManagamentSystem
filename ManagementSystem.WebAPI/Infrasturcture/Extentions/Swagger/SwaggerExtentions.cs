@@ -115,6 +115,11 @@ namespace ManagementSystem.WebAPI.Infrastructure.Extensions.Swagger
 					Title = "authenticationService",
 					Version = "v1",
 					Description = "The Service about the  Member Authentication Token Generate will be done here "
+				});		opt.SwaggerDoc("applicationService", new OpenApiInfo
+				{
+					Title = "authenticationService",
+					Version = "v1",
+					Description = "The Service about the  Member Authentication applicationService will be done here "
 				});
 					opt.SwaggerDoc("permissionService", new OpenApiInfo
 				{
@@ -188,6 +193,7 @@ namespace ManagementSystem.WebAPI.Infrastructure.Extensions.Swagger
 					c.SwaggerEndpoint("/swagger/roleService/swagger.json", "Role Information");
 					c.SwaggerEndpoint("/swagger/rolePermissionService/swagger.json", "Role Permission Information");
 					c.SwaggerEndpoint("/swagger/userPermissionService/swagger.json", "User Permission Information");
+					c.SwaggerEndpoint("/swagger/applicationService/swagger.json", "Application Service Information");
 					#endregion
 
 

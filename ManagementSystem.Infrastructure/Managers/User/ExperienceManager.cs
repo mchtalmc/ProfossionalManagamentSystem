@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using Azure.Core;
-using MagamentSystem.Application.DataTransferObject;
+﻿using MagamentSystem.Application.DataTransferObject;
 using MagamentSystem.Application.DataTransferObject.User.Experience;
 using MagamentSystem.Application.Managers.User;
 using MagamentSystem.Application.Repository.UserRepository.Experiences;

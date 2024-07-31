@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using MagamentSystem.Application.DataTransferObject.User.Education;
+﻿using MagamentSystem.Application.DataTransferObject.User.Education;
 using MagamentSystem.Application.Managers.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +18,7 @@ namespace ManagementSystem.WebAPI.Controllers.Users
 			_educationManager = educationManager;
 		}
 		[HttpPost("CreateEducationInformation's")]
+		
 		public async Task<IActionResult> CreateEducationInfo([FromBody] CreateEducationRequest req)
 		{
 			var loginUserId = User?.FindFirst("id")?.Value;

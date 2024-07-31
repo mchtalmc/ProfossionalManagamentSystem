@@ -2,7 +2,7 @@
 {
 	public class CreateUserPermission
 	{
-		public int AppUserId { get; set; }
-		public int CustomPermissionId { get; set; }
+		public int AppUsersId { get; set; }
+		public int CustomPermissionsId { get; set; }
 	}
 }

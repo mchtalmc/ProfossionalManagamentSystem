@@ -1,7 +1,6 @@
 ﻿using MagamentSystem.Application.DataTransferObject.Buy.Contractİnfo;
 using MagamentSystem.Application.Managers.Buy;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagementSystem.WebAPI.Controllers.Buys
@@ -19,6 +18,7 @@ namespace ManagementSystem.WebAPI.Controllers.Buys
 			_contractInfoManager = contractInfoManager;
 		}
 		[HttpPost("CreateContractInfo")]
+		
 		public async Task<IActionResult> CreateContractInfo([FromBody]CreateContractInfoRequest request)
 		{
 			var loginUserId= User?.FindFirst("id")?.Value;
