@@ -7,6 +7,7 @@
         public bool DisabilityStatus { get; set; }
         public string WhatSidability { get; set; }
         public bool CanUseVehicle { get; set; }
-		public AppUser AppUser { get; set; }
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

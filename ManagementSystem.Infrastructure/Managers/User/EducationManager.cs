@@ -29,7 +29,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				YearOfGraduation=request.YearOfGraduation,
 				AddedBy=request.AddedBy,
 				IsStatus=request.IsStatus,
-				AppUserId=request.Ap
+				AppUserId=request.AppUserId,
 				CreatedDate=DateTime.UtcNow
 			};
 			var response= await _educationWriteRepository.AddAsync(dto);
@@ -102,10 +102,10 @@ namespace ManagementSystem.Infrastructure.Managers.User
 			{
 				query=query.Where(x=> x.GraduatedSchool.Contains(request.GraduatedSchool));
 			}
-			if (!string.IsNullOrEmpty(request.YearOfGraduation.Value.ToString())) ;
+			if (!string.IsNullOrEmpty(request.YearOfGraduation.Year.ToString()));
 			{
 				;
-				//query = query.Where(x => x.YearOfGraduation.Year == request); // Guvenmiyorum ama is gorur gibi
+				query = query.Where(x => x.YearOfGraduation.Year == request.YearOfGraduation.Year); // Guvenmiyorum ama is gorur gibi
 			}
 			var response = query.Where(x=>x.RemovedDate == null).Select(x => new EducationResponse
 			{

@@ -7,7 +7,7 @@
 		public bool DisabilityStatus { get; set; }
 		public string WhatSidability { get; set; }
 		public bool CanUseVehicle { get; set; }
-	//	public int UserId { get; set; }
+		public int AppUserId { get; set; }
         public int AddedBy { get; set; }
         public bool IsStatus { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;

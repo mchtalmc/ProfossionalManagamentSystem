@@ -7,7 +7,8 @@
         public string City { get; set; }
         public string Country { get; set; }
         public string WhichTitle { get; set; }
-		public AppUser AppUser { get; set; }
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
 
     }   
 }

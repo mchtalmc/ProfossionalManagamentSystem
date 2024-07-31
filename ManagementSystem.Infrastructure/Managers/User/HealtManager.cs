@@ -29,6 +29,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				WhatSidability = request.WhatSidability,
 				CanUseVehicle = request.CanUseVehicle,
 				AddedBy = request.AddedBy,
+				AppUserId=request.AppUserId,
 				IsStatus = request.IsStatus,
 				CreatedDate = DateTime.UtcNow
 			};
@@ -72,6 +73,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				HealtResponse map = new HealtResponse
 				{
 					Id = item.Id,
+					AppUserId= item.AppUserId,
 					HaveADisase = item.HaveADisase,
 					WhatDiesase = item.WhatDiesase,
 					DisabilityStatus = item.DisabilityStatus,
@@ -109,10 +111,10 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				query = query.Where(x => x.CanUseVehicle == request.CanUseVehicle.Value);
 			}
 
-			//if (request.UserId.HasValue)
-			//{
-			//	query = query.Where(x => x.UserId == request.UserId.Value);
-			//}
+			if (request.AppUserId.HasValue)
+			{
+				query = query.Where(x => x.AppUser.Equals(request.AppUserId));
+			}
 
 			var result = query.Select(x => new HealtResponse
 			{
@@ -127,6 +129,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				HaveADisase = x.HaveADisase,
 				ModifiedDate = x.ModifiedDate,
 				Id = x.Id,
+				AppUserId=x.AppUserId,
 
 			}).ToList();
 			if (result is null)
@@ -146,6 +149,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 			HealtResponse mapData = new HealtResponse
 			{
 				Id = checkData.Id,
+				AppUserId= checkData.AppUserId,
 				HaveADisase = checkData.HaveADisase,
 				WhatDiesase = checkData.WhatDiesase,
 				DisabilityStatus = checkData.DisabilityStatus,
@@ -183,10 +187,10 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				query = query.Where(x => x.CanUseVehicle == request.CanUseVehicle.Value);
 			}
 
-			//if (request.UserId.HasValue)
-			//{
-			//	query = query.Where(x => x.UserId == request.UserId.Value);
-			//}
+			if (request.AppUserId.HasValue)
+			{
+				query = query.Where(x => x.AppUserId == request.AppUserId.Value);
+			}
 
 			var result = query.Select(x => new HealtResponse
 			{
@@ -201,6 +205,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				HaveADisase = x.HaveADisase,
 				ModifiedDate = x.ModifiedDate,
 				Id = x.Id,
+				AppUserId= x.AppUserId,
 
 			}).FirstOrDefault();
 			if(result is null)

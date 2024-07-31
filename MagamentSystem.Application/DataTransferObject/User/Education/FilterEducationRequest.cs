@@ -4,7 +4,7 @@
 	{
 		public string? Department { get; set; }
 		public string? GraduatedSchool { get; set; }
-		public DateTime? YearOfGraduation { get; set; }
+		public DateTime YearOfGraduation { get; set; }
 		public int? AppUserId { get; set; }
 	}
 }

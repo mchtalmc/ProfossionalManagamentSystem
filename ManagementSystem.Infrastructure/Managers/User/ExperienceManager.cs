@@ -28,6 +28,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				City=request.City,
 				Country=request.Country,
 				WhichTitle=request.WhichTitle,
+				AppUserId=request.AppUserId,
 				AddedBy=request.AddedBy,
 				IsStatus=request.IsStatus,
 				CreatedDate=DateTime.UtcNow
@@ -74,6 +75,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				ExperienceResponse response = new ExperienceResponse
 				{
 					Id=experience.Id,
+					AppUserId=experience.AppUserId,
 					HowManyYear=experience.HowManyYear,
 					HowFieldWork=experience.HowFieldWork,
 					City=experience.City,
@@ -118,6 +120,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				HowFieldWork = x.HowFieldWork,
 				HowManyYear = x.HowManyYear,
 				Id = x.Id,
+				AppUserId=x.AppUserId,
 				ModifiedBy = x.ModifiedBy,
 				ModifiedDate = x.ModifiedDate,
 				RemovedBy = x.RemovedBy,
@@ -146,6 +149,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				Country = checkData.Country,
 				WhichTitle = checkData.WhichTitle,
 				AddedBy = checkData.AddedBy,
+				AppUserId=checkData.AppUserId,
 				IsStatus = checkData.IsStatus,
 				CreatedDate = checkData.CreatedDate,
 				ModifiedDate = checkData.ModifiedDate,
@@ -182,6 +186,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				HowFieldWork = x.HowFieldWork,
 				HowManyYear = x.HowManyYear,
 				Id = x.Id,
+				AppUserId=x.AppUserId,
 				ModifiedBy = x.ModifiedBy,
 				ModifiedDate = x.ModifiedDate,
 				RemovedBy = x.RemovedBy,

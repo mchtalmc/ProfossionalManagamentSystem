@@ -24,6 +24,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 		{
 			MilitaryStatus mapData = new MilitaryStatus
 			{
+				AppUserId= request.AppUserId,
 				IsStatus=request.IsStatus,
 				IsDone=request.IsDone,
 				Delay=request.Delay,
@@ -100,6 +101,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				MilitaryResponse response = new MilitaryResponse
 				{
 					Id=item.Id,
+					AppUserId=item.AppUserId,
 					IsDone=item.IsDone,
 					Delay=item.Delay,
 					DelayEndDate=item.DelayEndDate,
@@ -127,6 +129,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 			MilitaryResponse mapData = new MilitaryResponse
 			{
 				Id=checkData.Id,
+				AppUserId=checkData.AppUserId,
 				IsStatus = checkData.IsStatus,
 				IsDone = checkData.IsDone,
 				Delay = checkData.Delay,
@@ -161,6 +164,7 @@ namespace ManagementSystem.Infrastructure.Managers.User
 				ModifiedBy = x.ModifiedBy,
 				ModifiedDate = x.ModifiedDate,
 				RemovedBy = x.RemovedBy,
+				AppUserId=x.AppUserId,
 				//Kimin bu onu da gormek istiyorum.
 			}).FirstOrDefault();
 			if(response is null)
